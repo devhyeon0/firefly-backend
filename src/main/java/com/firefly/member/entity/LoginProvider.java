@@ -1,2 +1,4 @@
-package com.firefly.member.entity;public enum LoginProvider {
+package com.firefly.member.entity;
+
+public enum LoginProvider {
 }

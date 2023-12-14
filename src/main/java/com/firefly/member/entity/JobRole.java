@@ -1,2 +1,4 @@
-package com.firefly.member.entity;public interface JobRole {
+package com.firefly.member.entity;
+
+public enum JobRole {
 }

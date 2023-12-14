@@ -1,2 +1,4 @@
-package com.firefly.member.entity;public enum MemberStatus {
+package com.firefly.member.entity;
+
+public enum MemberStatus {
 }
