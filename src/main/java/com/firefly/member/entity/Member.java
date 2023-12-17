@@ -1,6 +1,8 @@
 package com.firefly.member.entity;
 
 import jakarta.persistence.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import java.sql.Timestamp;
 
 @Entity
@@ -32,7 +34,10 @@ public class Member {
     @Column(nullable = false)
     private LoginProvider provider;
 
+    @CreatedDate
     private Timestamp createdAt;
+
+    @LastModifiedDate
     private Timestamp modifiedAt;
 
     @Column(nullable = false)
@@ -41,5 +46,4 @@ public class Member {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private JobRole jobRole;
-
 }
