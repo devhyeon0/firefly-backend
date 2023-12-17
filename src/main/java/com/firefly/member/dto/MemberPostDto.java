@@ -4,7 +4,10 @@ import com.firefly.member.entity.JobRole;
 import com.firefly.member.entity.LoginProvider;
 import com.firefly.member.entity.MemberRole;
 import com.firefly.member.entity.MemberStatus;
+import lombok.*;
 
+@Getter
+@AllArgsConstructor
 public class MemberPostDto {
 
     private String email;
