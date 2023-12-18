@@ -7,7 +7,7 @@ import com.firefly.member.entity.MemberStatus;
 import lombok.*;
 
 @Getter
-@AllArgsConstructor
+@Setter
 public class MemberPostDto {
 
     private String email;
