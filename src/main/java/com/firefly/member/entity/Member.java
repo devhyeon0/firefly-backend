@@ -6,9 +6,6 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import java.sql.Timestamp;
 
 @Getter
 @Entity
@@ -60,9 +57,8 @@ public class Member extends BaseAuditable {
         this.jobRole = jobRole;
     }
 
-    public void update(Long id, String email, String nickname, String password, String interestStack, JobRole jobRole) {
+    public void update(Long id, String nickname, String password, String interestStack, JobRole jobRole) {
         this.id = id;
-        this.email = email;
         this.nickname = nickname;
         this.password = password;
         this.interestStack = interestStack;

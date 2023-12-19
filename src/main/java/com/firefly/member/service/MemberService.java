@@ -22,7 +22,6 @@ public class MemberService {
     public Member updateMember(Long memberId, Member member) {
         Member findMember = findMember(memberId);
         findMember.update(memberId,
-                member.getEmail(),
                 member.getNickname(),
                 member.getPassword(),
                 member.getInterestStack(),

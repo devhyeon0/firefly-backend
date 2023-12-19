@@ -4,11 +4,11 @@ import com.firefly.member.entity.JobRole;
 import com.firefly.member.entity.LoginProvider;
 import com.firefly.member.entity.MemberRole;
 import com.firefly.member.entity.MemberStatus;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
-@AllArgsConstructor
+@Setter
 public class MemberResponseDto {
 
     private Long id;

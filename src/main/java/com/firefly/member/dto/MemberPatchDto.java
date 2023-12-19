@@ -1,11 +1,11 @@
 package com.firefly.member.dto;
 
 import com.firefly.member.entity.JobRole;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
-@AllArgsConstructor
+@Setter
 public class MemberPatchDto {
 
     private Long id;
