@@ -1,5 +1,6 @@
 package com.firefly.member.entity;
 
+import com.firefly.common.audit.BaseAuditable;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -12,7 +13,7 @@ import java.sql.Timestamp;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Member {
+public class Member extends BaseAuditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,12 +41,6 @@ public class Member {
     @Column(nullable = false)
     private LoginProvider provider;
 
-    @CreatedDate
-    private Timestamp createdAt;
-
-    @LastModifiedDate
-    private Timestamp modifiedAt;
-
     @Column(nullable = false)
     private String  interestStack;
 
@@ -54,15 +49,13 @@ public class Member {
     private JobRole jobRole;
 
     @Builder
-    public Member(String email, String nickname, String password, MemberRole memberRole, MemberStatus status, LoginProvider provider, Timestamp createdAt, Timestamp modifiedAt, String interestStack, JobRole jobRole) {
+    public Member(String email, String nickname, String password, MemberRole memberRole, MemberStatus status, LoginProvider provider, String interestStack, JobRole jobRole) {
         this.email = email;
         this.nickname = nickname;
         this.password = password;
         this.memberRole = memberRole;
         this.status = status;
         this.provider = provider;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
         this.interestStack = interestStack;
         this.jobRole = jobRole;
     }
