@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class MemberPatchDto {
+public class MemberUpdateDto {
 
     private Long id;
     private String nickname;
