@@ -87,4 +87,8 @@ public class Post extends BaseEntity {
         this.estimatedPeriod = estimatedPeriod;
         this.status = status;
     }
+
+    public void setStatus(PostStatus status) {
+        this.status = status;
+    }
 }

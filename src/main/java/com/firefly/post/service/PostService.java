@@ -1,6 +1,7 @@
 package com.firefly.post.service;
 
 import com.firefly.post.entity.Post;
+import com.firefly.post.entity.PostStatus;
 import com.firefly.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -48,5 +49,11 @@ public class PostService {
     @Transactional(readOnly = true)
     public List<Post> findAll() {
         return postRepository.findAll();
+    }
+
+    public void deletePost(Long postId) {
+        Post findPost = findPost(postId);
+
+        findPost.setStatus(PostStatus.DELETED);
     }
 }
