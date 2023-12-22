@@ -5,6 +5,7 @@ import com.firefly.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -15,5 +16,13 @@ public class PostService {
 
     public void createPost(Post post) {
         postRepository.save(post);
+    }
+
+    @Transactional(readOnly = true)
+    public Post findPost(Long postId) {
+        Optional<Post> findPost = postRepository.findById(postId);
+
+        return findPost.orElseThrow(() ->
+                new IllegalArgumentException("게시글이 존재하지 않습니다."));
     }
 }
