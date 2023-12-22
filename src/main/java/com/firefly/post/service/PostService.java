@@ -18,6 +18,23 @@ public class PostService {
         postRepository.save(post);
     }
 
+    public Post updatePost(Long postId, Post post) {
+        Post findPost = findPost(postId);
+        findPost.update(post.getTitle(),
+                post.getContent(),
+                post.getRecruitMember(),
+                post.getRecruitField(),
+                post.getRecruitType(),
+                post.getContact(),
+                post.getContactLink(),
+                post.getTechStack(),
+                post.getDeadline(),
+                post.getEstimatedPeriod(),
+                post.getStatus());
+
+        return findPost;
+    }
+
     @Transactional(readOnly = true)
     public Post findPost(Long postId) {
         Optional<Post> findPost = postRepository.findById(postId);
