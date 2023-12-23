@@ -1,6 +1,7 @@
 package com.firefly.post.entity;
 
 import com.firefly.common.audit.BaseEntity;
+import com.firefly.member.entity.Member;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -57,6 +58,15 @@ public class Post extends BaseEntity {
 
     @Column(nullable = false)
     private Long views;
+
+    @ManyToOne
+    @JoinColumn
+    private Member member;
+
+    public void setMember(Member member) {
+        this.member = member;
+        member.setPosts(this);
+    }
 
     @Builder
     public Post(String title, String content, Integer recruitMember, RecruitField recruitField, RecruitType recruitType, String contact, String contactLink, String techStack, LocalDate deadline, String estimatedPeriod, PostStatus status, Long views) {

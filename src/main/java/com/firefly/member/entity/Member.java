@@ -1,11 +1,14 @@
 package com.firefly.member.entity;
 
 import com.firefly.common.audit.BaseTimeEntity;
+import com.firefly.post.entity.Post;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Entity
@@ -44,6 +47,13 @@ public class Member extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private JobRole jobRole;
+
+    @OneToMany(mappedBy = "member")
+    private List<Post> posts = new ArrayList<>();
+
+    public void setPosts(Post post) {
+        this.posts.add(post);
+    }
 
     @Builder
     public Member(String email, String nickname, String password, MemberRole memberRole, MemberStatus status, LoginProvider provider, String interestStack, JobRole jobRole) {
