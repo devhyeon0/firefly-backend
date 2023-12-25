@@ -1,6 +1,7 @@
 package com.firefly.member.entity;
 
 import com.firefly.common.audit.BaseTimeEntity;
+import com.firefly.post.entity.Like;
 import com.firefly.post.entity.Post;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -54,6 +55,9 @@ public class Member extends BaseTimeEntity {
     public void addPost(Post post) {
         this.posts.add(post);
     }
+
+    @OneToMany(mappedBy = "member")
+    private List<Like> likes = new ArrayList<>();
 
     @Builder
     public Member(String email, String nickname, String password, MemberRole memberRole, MemberStatus status, LoginProvider provider, String interestStack, JobRole jobRole) {
