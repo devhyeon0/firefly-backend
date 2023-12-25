@@ -2,6 +2,7 @@ package com.firefly.post.entity;
 
 import com.firefly.common.audit.BaseEntity;
 import com.firefly.member.entity.Member;
+import com.firefly.post.dto.PostUpdateDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static jakarta.persistence.EnumType.*;
 
@@ -89,18 +91,18 @@ public class Post extends BaseEntity {
         this.views = views;
     }
 
-    public void update(String title, String content, Integer recruitMember, RecruitField recruitField, RecruitType recruitType, String contact, String contactLink, String techStack, LocalDate deadline, String estimatedPeriod, PostStatus status) {
-        this.title = title;
-        this.content = content;
-        this.recruitMember = recruitMember;
-        this.recruitField = recruitField;
-        this.recruitType = recruitType;
-        this.contact = contact;
-        this.contactLink = contactLink;
-        this.techStack = techStack;
-        this.deadline = deadline;
-        this.estimatedPeriod = estimatedPeriod;
-        this.status = status;
+    public void update(PostUpdateDto postDto) {
+        Optional.ofNullable(postDto.getTitle()).ifPresent(value -> this.title = value);
+        Optional.ofNullable(postDto.getContent()).ifPresent(value -> this.content = value);
+        Optional.ofNullable(postDto.getRecruitMember()).ifPresent(value -> this.recruitMember = value);
+        Optional.ofNullable(postDto.getRecruitField()).ifPresent(value -> this.recruitField = value);
+        Optional.ofNullable(postDto.getRecruitType()).ifPresent(value -> this.recruitType = value);
+        Optional.ofNullable(postDto.getContact()).ifPresent(value -> this.contact = value);
+        Optional.ofNullable(postDto.getContactLink()).ifPresent(value -> this.contactLink = value);
+        Optional.ofNullable(postDto.getTechStack()).ifPresent(value -> this.techStack = value);
+        Optional.ofNullable(postDto.getDeadline()).ifPresent(value -> this.deadline = value);
+        Optional.ofNullable(postDto.getEstimatedPeriod()).ifPresent(value -> this.estimatedPeriod = value);
+        Optional.ofNullable(postDto.getStatus()).ifPresent(value -> this.status = value);
     }
 
     public void setStatus(PostStatus status) {

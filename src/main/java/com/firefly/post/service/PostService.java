@@ -33,19 +33,7 @@ public class PostService {
 
     public Post updatePost(Long postId, PostUpdateDto postDto) {
         Post findPost = findPost(postId);
-        Post post = mapper.postUpdateDtoToPost(postDto);
-
-        findPost.update(post.getTitle(),
-                post.getContent(),
-                post.getRecruitMember(),
-                post.getRecruitField(),
-                post.getRecruitType(),
-                post.getContact(),
-                post.getContactLink(),
-                post.getTechStack(),
-                post.getDeadline(),
-                post.getEstimatedPeriod(),
-                post.getStatus());
+        findPost.update(postDto);
 
         return findPost;
     }
