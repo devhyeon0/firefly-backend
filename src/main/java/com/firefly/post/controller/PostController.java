@@ -24,7 +24,7 @@ public class PostController {
 
     @PostMapping
     public ResponseEntity<Objects> createPost(@Valid @RequestBody PostCreationDto requestBody) {
-        postService.createPost(mapper.postCreationDtoToPost(requestBody));
+        postService.createPost(requestBody);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -32,7 +32,7 @@ public class PostController {
     @PatchMapping("/{id}")
     public ResponseEntity<PostResponseDto> patchPost(@PathVariable("id") Long postId,
                                                      @Valid @RequestBody PostUpdateDto requestBody) {
-        Post post = postService.updatePost(postId, mapper.postUpdateDtoToPost(requestBody));
+        Post post = postService.updatePost(postId, requestBody);
 
         return ResponseEntity.ok(mapper.postToPostResponseDto(post));
     }

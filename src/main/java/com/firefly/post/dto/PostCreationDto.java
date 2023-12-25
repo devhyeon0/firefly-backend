@@ -1,5 +1,6 @@
 package com.firefly.post.dto;
 
+import com.firefly.member.entity.Member;
 import com.firefly.post.entity.PostStatus;
 import com.firefly.post.entity.RecruitField;
 import com.firefly.post.entity.RecruitType;
@@ -23,4 +24,5 @@ public class PostCreationDto {
     private String estimatedPeriod;
     private PostStatus status;
     private Long views;
+    private Member member;
 }

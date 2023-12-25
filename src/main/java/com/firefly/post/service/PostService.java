@@ -1,7 +1,12 @@
 package com.firefly.post.service;
 
+import com.firefly.member.entity.Member;
+import com.firefly.member.repository.MemberRepository;
+import com.firefly.post.dto.PostCreationDto;
+import com.firefly.post.dto.PostUpdateDto;
 import com.firefly.post.entity.Post;
 import com.firefly.post.entity.PostStatus;
+import com.firefly.post.mapper.PostMapper;
 import com.firefly.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,13 +20,21 @@ import java.util.Optional;
 public class PostService {
 
     private final PostRepository postRepository;
+    private final MemberRepository memberRepository;
+    private final PostMapper mapper;
 
-    public void createPost(Post post) {
+    public void createPost(PostCreationDto postDto) {
+        Member member = memberRepository.findByNickname(postDto.getMember().getNickname());
+        postDto.setMember(member);
+        Post post = mapper.postCreationDtoToPost(postDto);
+
         postRepository.save(post);
     }
 
-    public Post updatePost(Long postId, Post post) {
+    public Post updatePost(Long postId, PostUpdateDto postDto) {
         Post findPost = findPost(postId);
+        Post post = mapper.postUpdateDtoToPost(postDto);
+
         findPost.update(post.getTitle(),
                 post.getContent(),
                 post.getRecruitMember(),

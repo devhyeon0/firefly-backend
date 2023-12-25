@@ -59,13 +59,13 @@ public class Post extends BaseEntity {
     @Column(nullable = false)
     private Long views;
 
-    @ManyToOne
-    @JoinColumn
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
     private Member member;
 
     public void setMember(Member member) {
         this.member = member;
-        member.setPosts(this);
+        member.addPost(this);
     }
 
     @Builder
