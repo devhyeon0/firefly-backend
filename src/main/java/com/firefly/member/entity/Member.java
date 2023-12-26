@@ -1,6 +1,7 @@
 package com.firefly.member.entity;
 
 import com.firefly.common.audit.BaseTimeEntity;
+import com.firefly.member.dto.MemberUpdateDto;
 import com.firefly.post.entity.Like;
 import com.firefly.post.entity.Post;
 import jakarta.persistence.*;
@@ -10,6 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Getter
 @Entity
@@ -71,11 +73,10 @@ public class Member extends BaseTimeEntity {
         this.jobRole = jobRole;
     }
 
-    public void update(Long id, String nickname, String password, String interestStack, JobRole jobRole) {
-        this.id = id;
-        this.nickname = nickname;
-        this.password = password;
-        this.interestStack = interestStack;
-        this.jobRole = jobRole;
+    public void update(MemberUpdateDto memberDto) {
+        Optional.ofNullable(memberDto.getNickname()).ifPresent(value -> this.nickname = value);
+        Optional.ofNullable(memberDto.getPassword()).ifPresent(value -> this.password = value);
+        Optional.ofNullable(memberDto.getInterestStack()).ifPresent(value -> this.interestStack = value);
+        Optional.ofNullable(memberDto.getJobRole()).ifPresent(value -> this.jobRole = value);
     }
 }

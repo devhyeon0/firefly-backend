@@ -8,7 +8,6 @@ import lombok.Setter;
 @Setter
 public class MemberUpdateDto {
 
-    private Long id;
     private String nickname;
     private String password;
     private String interestStack;

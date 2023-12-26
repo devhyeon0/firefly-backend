@@ -23,7 +23,7 @@ public class MemberController {
 
     @PostMapping
     public ResponseEntity<Objects> postMember(@Valid @RequestBody MemberCreationDto requestBody) {
-        memberService.createMember(mapper.memberPostDtoToMember(requestBody), requestBody.getEmail());
+        memberService.createMember(requestBody);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -31,7 +31,7 @@ public class MemberController {
     @PatchMapping("/{id}")
     public ResponseEntity<MemberResponseDto> patchMember(@PathVariable("id") Long memberId,
                                                          @RequestBody MemberUpdateDto requestBody) {
-        Member member = memberService.updateMember(memberId, mapper.memberPatchDtoToMember(requestBody));
+        Member member = memberService.updateMember(memberId, requestBody);
 
         return ResponseEntity.ok(mapper.memberToMemberResponseDto(member));
     }
