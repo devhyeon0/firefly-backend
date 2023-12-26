@@ -1,6 +1,9 @@
 package com.firefly.member.service;
 
+import com.firefly.member.dto.MemberCreationDto;
+import com.firefly.member.dto.MemberUpdateDto;
 import com.firefly.member.entity.Member;
+import com.firefly.member.mapper.MemberMapper;
 import com.firefly.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,19 +16,18 @@ import java.util.Optional;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+    private final MemberMapper mapper;
 
-    public void createMember(Member member, String email) {
-        verifyExistsByEmail(email);
+    public void createMember(MemberCreationDto memberDto) {
+        verifyExistsByEmail(memberDto.getEmail());
+        Member member = mapper.memberPostDtoToMember(memberDto);
+
         memberRepository.save(member);
     }
 
-    public Member updateMember(Long memberId, Member member) {
+    public Member updateMember(Long memberId, MemberUpdateDto memberDto) {
         Member findMember = findMember(memberId);
-        findMember.update(memberId,
-                member.getNickname(),
-                member.getPassword(),
-                member.getInterestStack(),
-                member.getJobRole());
+        findMember.update(memberDto);
 
         return findMember;
     }

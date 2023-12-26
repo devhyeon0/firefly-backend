@@ -6,9 +6,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class MemberPatchDto {
+public class MemberUpdateDto {
 
-    private Long id;
     private String nickname;
     private String password;
     private String interestStack;

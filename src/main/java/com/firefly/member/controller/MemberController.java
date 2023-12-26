@@ -1,7 +1,7 @@
 package com.firefly.member.controller;
 
-import com.firefly.member.dto.MemberPatchDto;
-import com.firefly.member.dto.MemberPostDto;
+import com.firefly.member.dto.MemberUpdateDto;
+import com.firefly.member.dto.MemberCreationDto;
 import com.firefly.member.dto.MemberResponseDto;
 import com.firefly.member.entity.Member;
 import com.firefly.member.mapper.MemberMapper;
@@ -22,16 +22,16 @@ public class MemberController {
     private final MemberMapper mapper;
 
     @PostMapping
-    public ResponseEntity<Objects> postMember(@Valid @RequestBody MemberPostDto requestBody) {
-        memberService.createMember(mapper.memberPostDtoToMember(requestBody), requestBody.getEmail());
+    public ResponseEntity<Objects> postMember(@Valid @RequestBody MemberCreationDto requestBody) {
+        memberService.createMember(requestBody);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PatchMapping("/{id}")
     public ResponseEntity<MemberResponseDto> patchMember(@PathVariable("id") Long memberId,
-                                                         @RequestBody MemberPatchDto requestBody) {
-        Member member = memberService.updateMember(memberId, mapper.memberPatchDtoToMember(requestBody));
+                                                         @RequestBody MemberUpdateDto requestBody) {
+        Member member = memberService.updateMember(memberId, requestBody);
 
         return ResponseEntity.ok(mapper.memberToMemberResponseDto(member));
     }

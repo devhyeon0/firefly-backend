@@ -8,7 +8,7 @@ import lombok.*;
 
 @Getter
 @Setter
-public class MemberPostDto {
+public class MemberCreationDto {
 
     private String email;
     private String nickname;
