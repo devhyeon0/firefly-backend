@@ -67,13 +67,13 @@ public class Post extends BaseEntity {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private List<Like> likes = new ArrayList<>();
+
     public void setMember(Member member) {
         this.member = member;
-        member.addPost(this);
+        member.getPosts().add(this);
     }
-
-    @OneToMany(mappedBy = "post")
-    private List<Like> likes = new ArrayList<>();
 
     @Builder
     public Post(String title, String content, Integer recruitMember, RecruitField recruitField, RecruitType recruitType, String contact, String contactLink, String techStack, LocalDate deadline, String estimatedPeriod, PostStatus status, Long views) {

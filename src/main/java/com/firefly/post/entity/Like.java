@@ -25,4 +25,9 @@ public class Like {
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "post_id")
     private Post post;
+
+    public void setPost(Post post) {
+        this.post = post;
+        post.getLikes().add(this);
+    }
 }
