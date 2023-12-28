@@ -34,6 +34,10 @@ public class LikeService {
         likeRepository.save(like);
     }
 
+    public void deleteLike(Long likeId) {
+        likeRepository.deleteById(likeId);
+    }
+
     private Post findPost(Long postId) {
        return postRepository.findById(postId)
                .orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
