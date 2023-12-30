@@ -3,6 +3,7 @@ package com.firefly.post.entity;
 import com.firefly.member.entity.Member;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -29,5 +30,12 @@ public class Like {
     public void setPost(Post post) {
         this.post = post;
         post.getLikes().add(this);
+    }
+
+    @Builder
+    public Like(Long id, Member member, Post post) {
+        this.id = id;
+        this.member = member;
+        this.post = post;
     }
 }
