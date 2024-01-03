@@ -22,13 +22,13 @@ public class PostService {
 
     private final PostRepository postRepository;
     private final MemberRepository memberRepository;
-    private final PostMapper mapper;
+    private final PostMapper postMapper;
     private final MemberMapper memberMapper;
 
     public void createPost(PostCreationDto postDto) {
         Member member = memberRepository.findByNickname(postDto.getMember().getNickname());
         postDto.setMember(memberMapper.memberToMemberResponseDto(member));
-        Post post = mapper.postCreationDtoToPost(postDto);
+        Post post = postMapper.postCreationDtoToPost(postDto);
 
         postRepository.save(post);
     }

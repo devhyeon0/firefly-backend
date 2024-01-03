@@ -2,6 +2,7 @@ package com.firefly.post.entity;
 
 import lombok.Getter;
 
+@Getter
 public enum RecruitField {
     FRONTEND("프론트엔드"),
     BACKEND("백엔드"),
@@ -11,7 +12,6 @@ public enum RecruitField {
     DEV_OPS("데브옵스"),
     PRODUCT_MANAGER("기획자");
 
-    @Getter
     private final String name;
 
     RecruitField(String name) {
