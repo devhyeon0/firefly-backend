@@ -67,16 +67,16 @@ public class Post extends BaseEntity {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    public void setMember(Member member) {
-        this.member = member;
-        member.addPost(this);
-    }
-
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Like> likes = new ArrayList<>();
 
+    public void setMember(Member member) {
+        this.member = member;
+        member.getPosts().add(this);
+    }
+
     @Builder
-    public Post(String title, String content, Integer recruitMember, RecruitField recruitField, RecruitType recruitType, String contact, String contactLink, String techStack, LocalDate deadline, String estimatedPeriod, PostStatus status, Long views) {
+    public Post(String title, String content, Integer recruitMember, RecruitField recruitField, RecruitType recruitType, String contact, String contactLink, String techStack, LocalDate deadline, String estimatedPeriod, PostStatus status, Long views, Member member) {
         this.title = title;
         this.content = content;
         this.recruitMember = recruitMember;
@@ -89,6 +89,7 @@ public class Post extends BaseEntity {
         this.estimatedPeriod = estimatedPeriod;
         this.status = status;
         this.views = views;
+        this.member = member;
     }
 
     public void update(PostUpdateDto postDto) {

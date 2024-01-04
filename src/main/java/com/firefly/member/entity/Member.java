@@ -26,7 +26,7 @@ public class Member extends BaseTimeEntity {
     @Column(length = 100, nullable = false, unique = true)
     private String email;
 
-    @Column(length = 15, nullable = false)
+    @Column(length = 15, nullable = false, unique = true)
     private String nickname;
 
     @Column(length = 100, nullable = false)
@@ -53,10 +53,6 @@ public class Member extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "member")
     private List<Post> posts = new ArrayList<>();
-
-    public void addPost(Post post) {
-        this.posts.add(post);
-    }
 
     @OneToMany(mappedBy = "member")
     private List<Like> likes = new ArrayList<>();

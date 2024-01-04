@@ -1,6 +1,7 @@
 package com.firefly.post.service;
 
 import com.firefly.member.entity.Member;
+import com.firefly.member.mapper.MemberMapper;
 import com.firefly.member.repository.MemberRepository;
 import com.firefly.post.dto.PostCreationDto;
 import com.firefly.post.dto.PostUpdateDto;
@@ -21,12 +22,13 @@ public class PostService {
 
     private final PostRepository postRepository;
     private final MemberRepository memberRepository;
-    private final PostMapper mapper;
+    private final PostMapper postMapper;
+    private final MemberMapper memberMapper;
 
     public void createPost(PostCreationDto postDto) {
         Member member = memberRepository.findByNickname(postDto.getMember().getNickname());
-        postDto.setMember(member);
-        Post post = mapper.postCreationDtoToPost(postDto);
+        postDto.setMember(memberMapper.memberToMemberResponseDto(member));
+        Post post = postMapper.postCreationDtoToPost(postDto);
 
         postRepository.save(post);
     }
